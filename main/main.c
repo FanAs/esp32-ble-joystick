@@ -38,14 +38,6 @@
 
 #define GPIO_SW_BUTTON GPIO_NUM_0
 
-void deep_sleep(){
-    ESP_LOGI("deep_sleep", "Going to sleep");
-
-    disable_bluetooth();
-    configure_gpios();
-    esp_deep_sleep_start();
-}
-
 #define LINEAR_GROWTH 0.08
 #define INACTIVE_TIME_TO_SLEEP_MKS 60 * 1000 * 1000
 
@@ -132,6 +124,14 @@ void configure_gpios() {
 
     //Wakeup on low and high can be used concurrently for separate pins
     esp_deep_sleep_enable_gpio_wakeup(1ULL << GPIO_SW_BUTTON, ESP_GPIO_WAKEUP_GPIO_LOW);
+}
+
+void deep_sleep(){
+    ESP_LOGI("deep_sleep", "Going to sleep");
+
+    disable_bluetooth();
+    configure_gpios();
+    esp_deep_sleep_start();
 }
 
 
