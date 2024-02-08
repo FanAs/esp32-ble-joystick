@@ -42,6 +42,7 @@ void deep_sleep(){
     ESP_LOGI("deep_sleep", "Going to sleep");
 
     disable_bluetooth();
+    configure_gpios();
     esp_deep_sleep_start();
 }
 
